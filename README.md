@@ -10,6 +10,7 @@ The editor contain a lot of features who can upgrade the ergonomie of the websit
 [ x ] - Automatic Convert Markdown to HMTL to realtime preview. <br/>
 [ x ] - Modify a line by just clicking on it, like Word or Google Doc <br/>
 [ ~ ] - Buttons ( bold, italic... ) for people who don't know some markdown prefix <br/>
+[ ] - Adding image
 [ ] - Copy the HTML in the clipboard by clicking in a button <br/>
 
 ## ✍️ Author
