@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 18px;
+}
+
+main {
+    margin: 3% 23%;
+}
+
+.render {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+textarea{
+    width: 100%;
+    height: calc( 10px + 1rem );
+    margin-top: 20px;
+    resize: none;
+    font-size: 1rem;
+    font-family: unset;
+    /* border: 0; */
+    overflow: hidden;
+    outline: 0;
+}
+
+h1, h2, h3, h4, p { cursor: pointer }

@@ -1,0 +1,18 @@
+{
+  "name": "web_text_editor",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^8.0.10"
+  },
+  "dependencies": {
+    "html-to-md": "^0.8.8",
+    "marked": "^18.0.3"
+  }
+}
