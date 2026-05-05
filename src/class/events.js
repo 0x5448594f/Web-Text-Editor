@@ -17,17 +17,19 @@ export default class EventManager {
     }
 
     trigger_mouse(mouse) {
+        if ( !RENDER.contains(mouse.target) ) return
+
         this.trigger = mouse.target;
         this.parent = this.get_parent(this.trigger);
+        let cursor_pos = this.get_cursor_pos(mouse);
 
-        let no_base_trigger = this.trigger !== this.editor.base_input && this.trigger !== this.editor.base_button;
-
-        if ( this.editor.current_element === null && no_base_trigger ) {
-            this.editor.create_input(this.parent);
+        if ( !this.editor.current_element ) {
+            this.editor.create_input(this.parent, cursor_pos);
         }
     }
 
     trigger_enter(e) {
+        console.log(e.key);
 
         switch(e.key) {
             case "Enter":
@@ -39,6 +41,13 @@ export default class EventManager {
                     this.editor.new_line();
                 }
                 break;
+
+            case "Backspace":
+                if ( this.editor.current_element && this.editor.current_element.value === "" ) {
+                    RENDER.removeChild(this.editor.current_element);
+                    this.editor.clear();
+                }
+                break
 
             default:
                 break
@@ -57,5 +66,12 @@ export default class EventManager {
 
             return parent;
         }
+    }
+
+    get_cursor_pos(mouse) {
+        let selection = window.getSelection();
+        let range = document.caretRangeFromPoint(mouse.clientX, mouse.clientY);
+
+        return range.startOffset;
     }
 }
