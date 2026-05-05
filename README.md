@@ -7,10 +7,10 @@ To facilitate writing articles on my [journey website](), I create a small text 
 
 The editor contain a lot of features who can upgrade the ergonomie of the website and the usage to the user like: 
 
-[ ] - Automatic Convert Markdown to HMTL to realtime preview. <br/>
+[ x ] - Automatic Convert Markdown to HMTL to realtime preview. <br/>
+[ x ] - Modify a line by just clicking on it, like Word or Google Doc <br/>
 [ ] - Buttons ( bold, italic... ) for people who don't know some markdown prefix <br/>
 [ ] - Copy the HTML in the clipboard by clicking in a button <br/>
-[ ] - Modify a line by just clicking on it, like Word or Google Doc <br/>
 
 ## ✍️ Author
 I'm [Theo Derive](https://github.com/0x5448594f) and I try to learn as much as I can. For now it's just HTML and JS but I create the [thyo's journey]() website to make a documentation of things that I like.
