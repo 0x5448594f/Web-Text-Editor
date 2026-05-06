@@ -77,5 +77,7 @@ export default class Editor {
         this.current_element = null;
         this.index = 0;
         this.container = null;
+
+        this.buttons.clear();
     }
 }

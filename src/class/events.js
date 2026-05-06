@@ -14,6 +14,7 @@ export default class EventManager {
 
         window.addEventListener("mousedown", this.trigger_mouse);
         window.addEventListener("keydown", this.trigger_enter);
+        document.querySelector("#input").addEventListener("focus", () => this.editor.active_button())
     }
 
     trigger_mouse(mouse) {
@@ -25,18 +26,31 @@ export default class EventManager {
 
         if ( !this.editor.current_element ) {
             this.editor.create_input(this.parent, cursor_pos);
+        } else if ( this.editor.current_element !== this.parent ) {
+            this.editor.active_button();
+            this.editor.create_input(this.parent, cursor_pos);
         }
     }
 
     trigger_enter(e) {
-        console.log(e.key);
-
         switch(e.key) {
             case "Enter":
                 e.preventDefault();
 
                 if ( this.editor.current_element !== null && this.editor.button !== null ) {
+                    let textarea = this.editor.current_element;
+                    let cursor_pos = textarea.selectionStart;
+                    let remnant_words = textarea.value.slice(cursor_pos, textarea.value.length);
+
+                    textarea.value = textarea.value.slice(0, cursor_pos);
+
+                    let new_line = document.createElement("p");
+                    new_line.innerText = remnant_words;
+
+                    RENDER.insertBefore(new_line, RENDER.children[this.editor.index+1]);
                     this.editor.active_button();
+
+                    this.editor.create_input(new_line, 0);
                 } else if ( this.editor.base_input.value !== null || this.editor.base_input.value !== "" ) {
                     this.editor.new_line();
                 }
@@ -44,8 +58,26 @@ export default class EventManager {
 
             case "Backspace":
                 if ( this.editor.current_element && this.editor.current_element.value === "" ) {
+                    let prev_element = RENDER.children[this.editor.index-1];
+
                     RENDER.removeChild(this.editor.current_element);
                     this.editor.clear();
+
+                    this.editor.create_input(prev_element, prev_element.innerText.length);
+                } else if ( this.editor.current_element && this.editor.current_element.value !== "" ) {
+                    let textarea = this.editor.current_element; 
+                    let cursor_pos = textarea.selectionStart;
+
+                    if ( cursor_pos !== 0 ) return
+
+                    let prev_element = RENDER.children[this.editor.index-1];
+                    let new_cursor_pos = prev_element.innerText.length;
+                    prev_element.innerText = prev_element.innerText + textarea.value;
+
+                    RENDER.removeChild(textarea);
+                    this.editor.clear();
+
+                    this.editor.create_input(prev_element, new_cursor_pos);
                 }
                 break
 
