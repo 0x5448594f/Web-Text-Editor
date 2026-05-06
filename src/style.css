@@ -39,6 +39,11 @@ textarea{
 
 .italic_button { font-style: italic; }
 
+.buttons { 
+    display: flex;
+    gap: 10px;
+}
+
 button {
     font-size: 1.2rem;
     min-width: 30px;
@@ -46,6 +51,43 @@ button {
     background: transparent;
     border: 1px solid black;
     border-radius: 5px;
+}
+
+img {
+    margin: 30px auto;
+    width: 60%;
+}
+
+.file_button_container {
+    position: relative;
+    cursor: pointer;
+    width: 100px;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.file_button_container p {
+    position: absolute;
+    pointer-events: none;
+    font-size: 1.2rem;
+    width: 100px;
+    height: 30px;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.file_button {
+    pointer-events: all;
+    opacity: 0;
+}
+
+.file_button::after {
+    position: absolute;
+    z-index: 999;
+    content: "Add Image";
+    width: 100%;
+    text-align: center;
 }
 
 h1, h2, h3, h4, p { cursor: pointer }

@@ -13,6 +13,7 @@ export default class Buttons {
         this.code_button = document.querySelector(".code_button");
         this.title_button = document.querySelector(".title_button");
         this.line_button = document.querySelector(".line_button");
+        this.file_input = document.querySelector(".file_button");
 
         this.append_markdown_balise = this.append_markdown_balise.bind(this);
         this.title = this.title.bind(this);
@@ -21,12 +22,14 @@ export default class Buttons {
         this.determine_title_value = this.determine_title_value.bind(this);
         this.clear_hashtag = this.clear_hashtag.bind(this);
         this.jump_line = this.jump_line.bind(this);
+        this.add_image = this.add_image.bind(this);
 
         this.bold_button.addEventListener("click", () => this.append_markdown_balise("**"));
         this.italic_button.addEventListener("click", () => this.append_markdown_balise("*"));
         this.code_button.addEventListener("click", () => this.append_markdown_balise("`"));
         this.title_button.addEventListener("click", this.title);
         this.line_button.addEventListener("click", this.jump_line);
+        this.file_input.addEventListener("change", this.add_image);
     }
 
     append_markdown_balise(balise) {
@@ -141,6 +144,20 @@ export default class Buttons {
         let index = this.determine_title_value(value);
 
         return value.slice(index+1, value.length);
+    }
+
+    add_image(e) {
+        let file = e.target.files[0];
+        let src = this.createObjectURL(file);
+
+        let image = document.createElement("img");
+        image.src = src;
+
+        RENDER.appendChild(image);
+    }
+
+    createObjectURL(object) {
+        return (window.URL) ? window.URL.createObjectURL(object) : window.webkitURL.createObjectURL(object);
     }
 
     clear() {

@@ -24,6 +24,11 @@ export default class EventManager {
         this.parent = this.get_parent(this.trigger);
         let cursor_pos = this.get_cursor_pos(mouse);
 
+        if ( this.parent.localName === "img" ) {
+            RENDER.removeChild(this.parent);
+            return;
+        }
+
         if ( !this.editor.current_element ) {
             this.editor.create_input(this.parent, cursor_pos);
         } else if ( this.editor.current_element !== this.parent ) {
@@ -63,6 +68,8 @@ export default class EventManager {
                     RENDER.removeChild(this.editor.current_element);
                     this.editor.clear();
 
+                    if ( prev_element.localName === "img" ) return
+
                     this.editor.create_input(prev_element, prev_element.innerText.length);
                 } else if ( this.editor.current_element && this.editor.current_element.value !== "" ) {
                     let textarea = this.editor.current_element; 
@@ -76,6 +83,8 @@ export default class EventManager {
 
                     RENDER.removeChild(textarea);
                     this.editor.clear();
+
+                    if ( prev_element.localName === "img" ) return
 
                     this.editor.create_input(prev_element, new_cursor_pos);
                 }
