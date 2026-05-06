@@ -50,12 +50,14 @@ export default class Editor {
     }
 
     active_button() {
-        let new_element = document.createElement("p");
+        let new_element = document.createElement("div");
         new_element.innerHTML = marked.parse(this.current_element.value);
 
         this.current_element.replaceWith(new_element);
 
         this.clear();
+
+        localStorage.setItem("monChat", RENDER.innerHTML);
     }
 
     new_line() {
@@ -63,7 +65,7 @@ export default class Editor {
             return
         }
 
-        let new_element = document.createElement("span");
+        let new_element = document.createElement("div");
         new_element.innerHTML = marked.parse(this.base_input.value);
 
         RENDER.appendChild(new_element);
@@ -71,6 +73,8 @@ export default class Editor {
         this.base_input.value = null;
         this.base_input.height = "1px";
         this.base_input.height = ( 10 + this.base_input.scrollHeight ) + "px";
+
+        localStorage.setItem("monChat", RENDER.innerHTML);
     }
 
     clear() {

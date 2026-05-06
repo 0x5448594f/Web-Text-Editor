@@ -12,6 +12,7 @@ The editor contain a lot of features who can upgrade the ergonomie of the websit
  - [x] - Buttons ( bold, italic... ) for people who don't know some markdown prefix <br/>
  - [x] - Adding image <br />
  - [ ] - Copy the HTML in the clipboard by clicking in a button <br/>
-
+ - [ ] - Save to prevent unwanted reload ( and secure from js script or unwanted code that can frustrate you )
+ 
 ## ✍️ Author
 I'm [Theo Derive](https://github.com/0x5448594f) and I try to learn as much as I can. For now it's just HTML and JS but I create the [thyo's journey]() website to make a documentation of things that I like.
