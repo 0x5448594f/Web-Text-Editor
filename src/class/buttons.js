@@ -14,6 +14,7 @@ export default class Buttons {
         this.title_button = document.querySelector(".title_button");
         this.line_button = document.querySelector(".line_button");
         this.file_input = document.querySelector(".file_button");
+        this.valid_input = document.querySelector(".valid");
 
         this.append_markdown_balise = this.append_markdown_balise.bind(this);
         this.title = this.title.bind(this);
@@ -30,6 +31,8 @@ export default class Buttons {
         this.title_button.addEventListener("click", this.title);
         this.line_button.addEventListener("click", this.jump_line);
         this.file_input.addEventListener("change", this.add_image);
+
+        this.valid_input.addEventListener("click", () => navigator.clipboard.writeText(RENDER.innerHTML))
     }
 
     append_markdown_balise(balise) {
