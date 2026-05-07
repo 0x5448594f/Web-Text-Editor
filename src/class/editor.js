@@ -57,7 +57,7 @@ export default class Editor {
 
         this.clear();
 
-        localStorage.setItem("monChat", RENDER.innerHTML);
+        localStorage.setItem("article", RENDER.innerHTML);
     }
 
     new_line() {
@@ -74,7 +74,7 @@ export default class Editor {
         this.base_input.height = "1px";
         this.base_input.height = ( 10 + this.base_input.scrollHeight ) + "px";
 
-        localStorage.setItem("monChat", RENDER.innerHTML);
+        localStorage.setItem("article", RENDER.innerHTML);
     }
 
     clear() {

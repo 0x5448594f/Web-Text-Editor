@@ -7,7 +7,7 @@ import "./style.css";
 
 export const RENDER = document.querySelector(".render");
 
-let storage = localStorage.getItem("monChat");
+let storage = localStorage.getItem("article");
 
 if ( storage ) {
     RENDER.innerHTML = storage;
