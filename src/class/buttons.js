@@ -12,7 +12,6 @@ export default class Buttons {
         this.italic_button = document.querySelector(".italic_button");
         this.code_button = document.querySelector(".code_button");
         this.title_button = document.querySelector(".title_button");
-        this.line_button = document.querySelector(".line_button");
         this.file_input = document.querySelector(".file_button");
         this.valid_input = document.querySelector(".valid");
         this.valid_text = document.querySelector(".valid_info");
@@ -23,7 +22,6 @@ export default class Buttons {
         this.change_title_value = this.change_title_value.bind(this);
         this.determine_title_value = this.determine_title_value.bind(this);
         this.clear_hashtag = this.clear_hashtag.bind(this);
-        this.jump_line = this.jump_line.bind(this);
         this.add_image = this.add_image.bind(this);
         this.copy = this.copy.bind(this);
 
@@ -31,7 +29,6 @@ export default class Buttons {
         this.italic_button.addEventListener("click", () => this.append_markdown_balise("*"));
         this.code_button.addEventListener("click", () => this.append_markdown_balise("`"));
         this.title_button.addEventListener("click", this.title);
-        this.line_button.addEventListener("click", this.jump_line);
         this.file_input.addEventListener("change", this.add_image);
         this.valid_input.addEventListener("click", this.copy);
     }
@@ -84,22 +81,6 @@ export default class Buttons {
         let v  = textarea.value;
         textarea.value = v.slice(0, start) + balise + v.slice(start, end) + balise + v.slice(end, v.length);
     }
-
-    jump_line() {
-        let textarea;
-
-        if ( this.editor.current_element ) {
-            textarea = this.editor.current_element;
-        } else if ( this.editor.base_input ) {
-            textarea = this.editor.base_input;
-        } else return
-
-        let start = textarea.selectionStart;
-
-        let v = textarea.value;
-        textarea.value = v.slice(0, start) + "<br />" + v.slice(start, v.length);
-    }
-
 
     title() {
         let is_base_input = true;

@@ -1,4 +1,4 @@
-import { RENDER } from "../main";
+import { RENDER, BUTTONS_CONTAINER } from "../main";
 
 export default class EventManager {
 
@@ -18,11 +18,20 @@ export default class EventManager {
     }
 
     trigger_mouse(mouse) {
-        if ( !RENDER.contains(mouse.target) ) return
+        if ( BUTTONS_CONTAINER.contains(mouse.target) ) return
 
         this.trigger = mouse.target;
         this.parent = this.get_parent(this.trigger);
+
+        if ( this.parent === null ) return;
+        
         let cursor_pos = this.get_cursor_pos(mouse);
+
+
+        if ( this.editor.current_element && !RENDER.contains(this.trigger) ) {
+            this.editor.active_button();
+            return;
+        }
 
         if ( this.parent.localName === "img" ) {
             RENDER.removeChild(this.parent);

@@ -6,6 +6,7 @@ import { marked } from "marked";
 import "./style.css";
 
 export const RENDER = document.querySelector(".render");
+export const BUTTONS_CONTAINER = document.querySelector(".buttons");
 
 let storage = localStorage.getItem("article");
 

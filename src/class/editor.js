@@ -50,6 +50,8 @@ export default class Editor {
     }
 
     active_button() {
+        if ( this.current_element === null || this.current_element.value === null ) return
+
         let new_element = document.createElement("div");
         new_element.innerHTML = marked.parse(this.current_element.value);
 
