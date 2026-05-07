@@ -15,6 +15,7 @@ export default class Buttons {
         this.line_button = document.querySelector(".line_button");
         this.file_input = document.querySelector(".file_button");
         this.valid_input = document.querySelector(".valid");
+        this.valid_text = document.querySelector(".valid_info");
 
         this.append_markdown_balise = this.append_markdown_balise.bind(this);
         this.title = this.title.bind(this);
@@ -24,6 +25,7 @@ export default class Buttons {
         this.clear_hashtag = this.clear_hashtag.bind(this);
         this.jump_line = this.jump_line.bind(this);
         this.add_image = this.add_image.bind(this);
+        this.copy = this.copy.bind(this);
 
         this.bold_button.addEventListener("click", () => this.append_markdown_balise("**"));
         this.italic_button.addEventListener("click", () => this.append_markdown_balise("*"));
@@ -31,8 +33,37 @@ export default class Buttons {
         this.title_button.addEventListener("click", this.title);
         this.line_button.addEventListener("click", this.jump_line);
         this.file_input.addEventListener("change", this.add_image);
+        this.valid_input.addEventListener("click", this.copy);
+    }
 
-        this.valid_input.addEventListener("click", () => navigator.clipboard.writeText(RENDER.innerHTML))
+    copy() {
+        navigator.clipboard.writeText(RENDER.innerHTML).then(
+            () => {
+                this.valid_text.innerText = "Copied !";
+                this.valid_text.classList.add("success");
+                this.valid_text.classList.add("active");
+
+
+                setTimeout(() => {
+                    this.valid_text.classList.remove("active");
+                    this.valid_text.classList.remove("error");
+                }, 3000)
+            },
+            () => {
+                this.valid_input.classList.add("input_error");
+
+                this.valid_text.innerText = "Error, retry";
+                this.valid_text.classList.add("error");
+                this.valid_text.classList.add("active");
+
+                setTimeout(() => {
+                    this.valid_input.classList.remove("input_error");
+
+                    this.valid_text.classList.remove("active");
+                    this.valid_text.classList.remove("error");
+                }, 3000)
+            }
+        )
     }
 
     append_markdown_balise(balise) {
@@ -155,6 +186,13 @@ export default class Buttons {
 
         let image = document.createElement("img");
         image.src = src;
+
+        if ( this.editor.current_element !== null ) {
+            this.editor.active_button();
+
+            RENDER.insertBefore(image, RENDER.children[this.editor.index+1]);
+            return
+        }
 
         RENDER.appendChild(image);
     }

@@ -90,4 +90,98 @@ img {
     text-align: center;
 }
 
-h1, h2, h3, h4, p { cursor: pointer }
+.valid_container {
+    position: fixed;
+    display: flex;
+    width: 160px;
+    align-items: center;
+    justify-content: center;
+    bottom: 20px;
+    right: 20px;
+    pointer-events: none;
+    overflow: hidden;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.valid_info {
+    position: relative;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 40px;
+    padding-left: 10px; 
+    padding-right: 25px; 
+    left: 120px;
+    transition: left .3s ease-in-out;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.valid {
+    pointer-events: all;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #588157;
+    background: #588157;
+    transition: background .3s ease-out;
+    cursor: pointer;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 40%;
+        left: 22.5%;
+        width: 10px;
+        height: 3px;
+        transform: rotate(45deg);
+        background: white;
+        transition: background .3s ease-out;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: 44%;
+        right: 22.5%;
+        width: 15px;
+        height: 3px;
+        transform: rotate(-45deg);
+        background: white;
+        transition: background .3s ease-out;
+    }
+
+    &:hover {
+        background: white;
+
+        &::after, &::before {
+            background: #588157;
+        }
+    }
+}
+
+.input_error {
+    border: 2px solid #c1121f !important;
+    background: #c1121f !important;
+
+    &:hover {
+        background: white !important;
+
+        &::after, &::before {
+            background: #c1121f !important;
+        }
+    }
+
+    
+}
+
+
+
+.success { background: #588157; color: white; }
+.error { background: #c1121f; color: white; }
+.active{ left: 20px; }
+
+h1, h2, h3, h4, p { cursor: text }
