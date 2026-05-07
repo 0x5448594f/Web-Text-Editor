@@ -77,7 +77,7 @@ export default class EventManager {
                     RENDER.removeChild(this.editor.current_element);
                     this.editor.clear();
 
-                    if ( prev_element.localName === "img" ) return
+                    if ( !prev_element || prev_element.localName === "img" ) return
 
                     this.editor.create_input(prev_element, prev_element.innerText.length);
                 } else if ( this.editor.current_element && this.editor.current_element.value !== "" ) {
@@ -93,7 +93,7 @@ export default class EventManager {
                     RENDER.removeChild(textarea);
                     this.editor.clear();
 
-                    if ( prev_element.localName === "img" ) return
+                    if ( !prev_element || prev_element.localName === "img" ) return
 
                     this.editor.create_input(prev_element, new_cursor_pos);
                 }
